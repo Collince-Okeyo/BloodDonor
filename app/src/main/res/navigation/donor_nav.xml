@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/donor_nav"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/registerFragment3"
+        android:name="com.ramgdev.blooddonor.ui.fragments.auth.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/screenOneFragment"
+        android:name="com.ramgdev.blooddonor.ui.fragments.onboarding.ScreenOneFragment"
+        android:label="fragment_screen_one"
+        tools:layout="@layout/fragment_screen_one" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ramgdev.blooddonor.ui.fragments.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/screenThreeFragment"
+        android:name="com.ramgdev.blooddonor.ui.fragments.onboarding.ScreenThreeFragment"
+        android:label="fragment_s_creen_three"
+        tools:layout="@layout/fragment_s_creen_three" />
+    <fragment
+        android:id="@+id/screenTwoFragment"
+        android:name="com.ramgdev.blooddonor.ui.fragments.onboarding.ScreenTwoFragment"
+        android:label="fragment_screen_two"
+        tools:layout="@layout/fragment_screen_two" />
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.ramgdev.blooddonor.ui.fragments.splash.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
+</navigation>
