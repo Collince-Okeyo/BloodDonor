@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/calendar_bg.xml" value="0.1425" />
         <entry key="app/src/main/res/drawable/ic_find_facility.xml" value="0.144" />
         <entry key="app/src/main/res/drawable/ic_person.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/ic_personn.xml" value="0.131" />
@@ -10,6 +11,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18888888888888888" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_location.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.19375" />
