@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.auth.RegisterFragment">
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
@@ -58,6 +48,7 @@
         app:boxStrokeWidth="2dp"
         app:endIconMode="clear_text"
         app:endIconTint="@color/black"
+        app:startIconTint="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -89,6 +80,7 @@
         app:boxStrokeWidth="2dp"
         app:endIconMode="clear_text"
         app:endIconTint="@color/black"
+        app:startIconTint="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstNameET"
@@ -120,6 +112,7 @@
         app:boxStrokeWidth="2dp"
         app:endIconMode="clear_text"
         app:endIconTint="@color/black"
+        app:startIconTint="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastNameET"
@@ -152,6 +145,7 @@
         app:boxStrokeWidth="2dp"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/black"
+        app:startIconTint="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailSignUpET"
@@ -214,6 +208,7 @@
         app:boxStrokeWidth="2dp"
         app:endIconMode="clear_text"
         app:endIconTint="@color/black"
+        app:startIconTint="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordSignUpET"
