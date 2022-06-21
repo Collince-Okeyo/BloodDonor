@@ -20,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.IOException
+import java.lang.Exception
 import java.util.*
 
 
@@ -28,30 +29,60 @@ class LocationFragment : Fragment() {
     private lateinit var binding: FragmentLocationBinding
 
     private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-        val currentLocation = LatLng(0.620019, 34.522920)
-        googleMap.addMarker(MarkerOptions().position(currentLocation).title("Marker in Kibabii"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
 
-        val latitude = 0.620019
-        val longitude = 34.522920
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val currentLocation = LatLng(0.620019, 34.522920)
+                googleMap.addMarker(MarkerOptions().position(currentLocation).title("Marker in Kibabii"))
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
 
-        val zoomLevel = 15f
+                val latitude = 0.620019
+                val longitude = 34.522920
 
-        val homeLatLong = LatLng(latitude, longitude)
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLong, zoomLevel))
-        googleMap.addMarker(MarkerOptions().position(homeLatLong))
+                val zoomLevel = 15f
 
-        setMapLongClicked(googleMap)
-        setPoiClick(googleMap)
+                val homeLatLong = LatLng(latitude, longitude)
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLong, zoomLevel))
+                googleMap.addMarker(MarkerOptions().position(homeLatLong))
+
+                setMapLongClicked(googleMap)
+                setPoiClick(googleMap)
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+
+        ////////////////////////////////
+        val searchView = binding.idSearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val location = searchView.query.toString()
+                var addressList: List<Address>? = null
+
+                val geocoder = Geocoder(requireContext())
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    try {
+                        addressList = geocoder.getFromLocationName(location, 1)
+                    } catch (e: IOException){
+                        e.printStackTrace()
+                    }
+
+                    val address: Address = addressList!!.get(0)
+
+                    val latLng = LatLng(address.latitude, address.longitude)
+                    googleMap.addMarker(MarkerOptions().position(latLng).title(location))
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10F))
+
+                }
+                return false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
     }
 
     override fun onCreateView(
@@ -98,41 +129,5 @@ class LocationFragment : Fragment() {
             )
             poiMarker?.showInfoWindow()
         }
-    }
-
-
-    private fun searLocation(){
-
-        val searchView = binding.idSearchView
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                val location = searchView.query.toString()
-                var addressList: List<Address>? = null
-
-                val geocoder = Geocoder(requireContext())
-
-                CoroutineScope(Dispatchers.IO).launch {
-                    try {
-                        addressList = geocoder.getFromLocationName(location, 1)
-                    } catch (e: IOException){
-                        e.printStackTrace()
-                    }
-
-                    val address: Address = addressList!!.get(0)
-
-                    val latLng = LatLng(address.latitude, address.longitude)
-
-                }
-
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                // To Do
-                return true
-            }
-        })
-
     }
 }
