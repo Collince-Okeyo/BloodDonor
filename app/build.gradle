@@ -97,4 +97,7 @@ dependencies {
     // Feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
+    // PowerSpinner
+    implementation "com.github.skydoves:powerspinner:1.2.3"
+
 }

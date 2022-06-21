@@ -8,7 +8,10 @@
         <entry key="app/src/main/res/drawable/ic_person.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/ic_personn.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/ic_screen2.xml" value="0.1425" />
+        <entry key="app/src/main/res/drawable/map_bg.xml" value="0.1455" />
+        <entry key="app/src/main/res/drawable/search_view_bg.xml" value="0.1455" />
         <entry key="app/src/main/res/font/font.xml" value="0.22395833333333334" />
+        <entry key="app/src/main/res/layout-v21/fragment_location.xml" value="0.19375" />
         <entry key="app/src/main/res/layout-v21/fragment_login.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_dash_board.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18888888888888888" />

@@ -31,10 +31,8 @@ class SplashScreenFragment : Fragment() {
 
         Handler().postDelayed({
             if (user != null && onBoardingFinished()){
-                //startActivity(Intent(requireContext(), DashBoardActivity::class.java))
-                val intent = Intent(Intent(activity, DashBoardActivity::class.java))
-                startActivity(intent)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(Intent(activity, DashBoardActivity::class.java))
+                activity?.finish()
             } else if (user == null && onBoardingFinished()){
                 findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
             } else {

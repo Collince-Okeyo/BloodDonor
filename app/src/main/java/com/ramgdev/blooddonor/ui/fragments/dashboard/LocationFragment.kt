@@ -1,10 +1,12 @@
 package com.ramgdev.blooddonor.ui.fragments.dashboard
 
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -13,10 +15,17 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.ramgdev.blooddonor.R
+import com.ramgdev.blooddonor.databinding.FragmentLocationBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.IOException
 import java.util.*
 
 
 class LocationFragment : Fragment() {
+
+    private lateinit var binding: FragmentLocationBinding
 
     private val callback = OnMapReadyCallback { googleMap ->
         /**
@@ -50,8 +59,10 @@ class LocationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentLocationBinding.inflate(inflater, container, false)
 
-        return inflater.inflate(R.layout.fragment_location, container, false)
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,13 +100,39 @@ class LocationFragment : Fragment() {
         }
     }
 
-    /*override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-    }
 
-    override fun onStop() {
-        super.onStop()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-    }*/
+    private fun searLocation(){
+
+        val searchView = binding.idSearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val location = searchView.query.toString()
+                var addressList: List<Address>? = null
+
+                val geocoder = Geocoder(requireContext())
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        addressList = geocoder.getFromLocationName(location, 1)
+                    } catch (e: IOException){
+                        e.printStackTrace()
+                    }
+
+                    val address: Address = addressList!!.get(0)
+
+                    val latLng = LatLng(address.latitude, address.longitude)
+
+                }
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // To Do
+                return true
+            }
+        })
+
+    }
 }

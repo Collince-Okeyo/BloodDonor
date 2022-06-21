@@ -44,7 +44,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/font_two"
                 android:text="John Doe"
-                android:textColor="@color/blue"
+                android:textColor="@color/pink"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -107,22 +107,49 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
+    <com.skydoves.powerspinner.PowerSpinnerView
+        android:id="@+id/powerSpinnerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/light_pink"
+        android:fontFamily="@font/font_two"
+        android:gravity="center"
+        android:hint="Select Your Blood Type"
+        android:padding="10dp"
+        android:textColor="@color/pink"
+        android:textColorHint="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
+        app:spinner_arrow_gravity="end"
+        app:spinner_arrow_padding="8dp"
+        app:spinner_divider_color="@color/light_pink"
+        app:spinner_divider_show="true"
+        app:spinner_divider_size="0.4dp"
+        app:spinner_item_array="@array/blood_types"
+        app:spinner_item_height="46dp"
+        app:spinner_popup_animation="bounce"
+        app:spinner_popup_background="@color/white"
+        app:spinner_popup_elevation="14dp" />
+
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+        app:layout_constraintTop_toBottomOf="@+id/powerSpinnerView" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/font_two"
         android:text="Schedule Blood Donation Appointment"
         android:textSize="16sp"
@@ -134,20 +161,20 @@
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/font_two"
         android:text="Schedule"
         android:textColor="@color/blue"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView19"
+        app:layout_constraintStart_toStartOf="@+id/textView19"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <ImageView
         android:id="@+id/calendarView"
         android:layout_width="29dp"
         android:layout_height="33dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="8dp"
         android:src="@drawable/calendar"
         app:layout_constraintBottom_toBottomOf="@+id/textView21"
         app:layout_constraintStart_toEndOf="@+id/textView21"
