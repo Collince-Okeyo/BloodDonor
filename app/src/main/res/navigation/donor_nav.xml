@@ -21,9 +21,6 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment3"
             app:destination="@id/registerFragment3" />
-        <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -36,36 +33,11 @@
             app:popUpTo="@id/donor_nav"
             app:popUpToInclusive="false" />
         <action
-            android:id="@+id/action_splashScreenFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/donor_nav"
-            app:popUpToInclusive="false" />
-        <action
             android:id="@+id/action_splashScreenFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/donor_nav"
             app:popUpToInclusive="false" />
     </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/locationFragment"
-        android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.LocationFragment"
-        android:label="fragment_location"
-        tools:layout="@layout/fragment_location" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/notificationFragment"
-        android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.NotificationFragment"
-        android:label="fragment_notification"
-        tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.ramgdev.blooddonor.ui.fragments.onboarding.ViewPagerFragment"
@@ -73,11 +45,8 @@
         tools:layout="@layout/fragment_view_pager" >
         <action
             android:id="@+id/action_viewPagerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/donor_nav"
+            app:popUpToInclusive="false" />
     </fragment>
-    <fragment
-        android:id="@+id/forgotPasswordFragment"
-        android:name="com.ramgdev.blooddonor.ui.fragments.auth.ForgotPasswordFragment"
-        android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password" />
 </navigation>

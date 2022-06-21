@@ -2,6 +2,7 @@ package com.ramgdev.blooddonor.ui.fragments.splash
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.ramgdev.blooddonor.R
+import com.ramgdev.blooddonor.ui.activity.DashBoardActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +31,10 @@ class SplashScreenFragment : Fragment() {
 
         Handler().postDelayed({
             if (user != null && onBoardingFinished()){
-                findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment)
+                //startActivity(Intent(requireContext(), DashBoardActivity::class.java))
+                val intent = Intent(Intent(activity, DashBoardActivity::class.java))
+                startActivity(intent)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             } else if (user == null && onBoardingFinished()){
                 findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
             } else {

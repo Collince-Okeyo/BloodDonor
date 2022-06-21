@@ -16,4 +16,5 @@
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
     <string name="email_2">Email</string>
+    <string name="notification">Notification</string>
 </resources>

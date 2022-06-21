@@ -7,19 +7,20 @@ import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.databinding.FragmentHomeBinding
 import timber.log.Timber
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment()  {
 
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        setHasOptionsMenu(true)
 
+
+        setHasOptionsMenu(true)
         return binding.root
     }
 

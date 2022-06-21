@@ -20,16 +20,6 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         bindind = FragmentProfileBinding.inflate(inflater, container, false)
 
-        bindind.toolbarProfile.setNavigationIcon(R.drawable.ic_arrow_back)
-        bindind.toolbarProfile.setNavigationOnClickListener {
-            activity?.onBackPressed()
-        }
-
-        bindind.calendarView.setOnClickListener {
-            Toast.makeText(requireContext(), "Calendar Clicked", Toast.LENGTH_SHORT).show()
-            bindind.calendar.visibility = VISIBLE
-        }
-
         return bindind.root
     }
 }

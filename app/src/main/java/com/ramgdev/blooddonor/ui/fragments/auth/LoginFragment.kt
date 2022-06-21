@@ -1,5 +1,6 @@
 package com.ramgdev.blooddonor.ui.fragments.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.databinding.FragmentLoginBinding
+import com.ramgdev.blooddonor.ui.activity.DashBoardActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -80,7 +82,7 @@ class LoginFragment : Fragment() {
                                         "Logged in Successfully",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                                    startActivity(Intent(requireContext(), DashBoardActivity::class.java))
                                 } else {
                                     Toast.makeText(
                                         requireContext(),

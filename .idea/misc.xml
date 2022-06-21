@@ -10,11 +10,12 @@
         <entry key="app/src/main/res/drawable/ic_screen2.xml" value="0.1425" />
         <entry key="app/src/main/res/font/font.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout-v21/fragment_login.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/activity_dash_board.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18888888888888888" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.19375" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_location.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.19375" />
@@ -27,6 +28,7 @@
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.19375" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19375" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.19375" />
+        <entry key="app/src/main/res/menu/options_menu.xml" value="0.19375" />
       </map>
     </option>
   </component>
