@@ -100,4 +100,7 @@ dependencies {
     // PowerSpinner
     implementation "com.github.skydoves:powerspinner:1.2.3"
 
+    // EasyPermissions
+    implementation 'com.vmadalin:easypermissions-ktx:1.0.0'
+
 }

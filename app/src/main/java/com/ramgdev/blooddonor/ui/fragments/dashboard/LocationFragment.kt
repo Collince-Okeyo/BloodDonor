@@ -1,11 +1,15 @@
 package com.ramgdev.blooddonor.ui.fragments.dashboard
 
+import android.Manifest
 import android.location.Address
 import android.location.Geocoder
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -16,6 +20,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.databinding.FragmentLocationBinding
+import com.vmadalin.easypermissions.EasyPermissions
+import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,9 +30,12 @@ import java.lang.Exception
 import java.util.*
 
 
-class LocationFragment : Fragment() {
+class LocationFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private lateinit var binding: FragmentLocationBinding
+    companion object {
+        const val PERMISSION_LOCATION_REQUEST_CODE = 1
+    }
 
     private val callback = OnMapReadyCallback { googleMap ->
 
@@ -92,6 +101,7 @@ class LocationFragment : Fragment() {
     ): View? {
         binding = FragmentLocationBinding.inflate(inflater, container, false)
 
+        requestLocationPermission()
 
         return binding.root
     }
@@ -128,6 +138,49 @@ class LocationFragment : Fragment() {
                     .title(poi.name)
             )
             poiMarker?.showInfoWindow()
+        }
+    }
+
+    private fun hasLocationPermission() =
+        EasyPermissions.hasPermissions(
+            requireContext(),
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+        )
+
+    private fun requestLocationPermission() =
+        EasyPermissions.requestPermissions(
+            this,
+            "This application cannot work without a Location Permission.",
+            PERMISSION_LOCATION_REQUEST_CODE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+        )
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            SettingsDialog.Builder(requireActivity()).build().show()
+        } else {
+            requestLocationPermission()
+        }
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
+        if (hasLocationPermission()) {
+            Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "Permission required", Toast.LENGTH_SHORT).show()
         }
     }
 }
