@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment3"
         android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment3_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/locationFragment3"
         android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.LocationFragment"
@@ -24,5 +28,19 @@
         android:id="@+id/profileFragment3"
         android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment3_to_datePickerFragment"
+            app:destination="@id/datePickerFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/datePickerFragment"
+        android:name="com.ramgdev.blooddonor.DatePickerFragment"
+        android:label="fragment_date_picker"
+        tools:layout="@layout/fragment_date_picker" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.ramgdev.blooddonor.ui.fragments.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

@@ -3,13 +3,11 @@ package com.ramgdev.blooddonor.ui.fragments.dashboard
 import android.Manifest
 import android.location.Address
 import android.location.Geocoder
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -26,7 +24,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.IOException
-import java.lang.Exception
 import java.util.*
 
 

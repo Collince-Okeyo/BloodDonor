@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ForgotPasswordFragment : DialogFragment() {
+class ForgotPasswordFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentForgotPasswordBinding
 
     override fun onCreateView(

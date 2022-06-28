@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main"
+    tools:context=".ui.fragments.settings.SettingsFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Favorite Items"
+        app:titleTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar3"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:menu="@menu/mode_menu"
+                app:subtitleTextColor="@color/white"
+                app:title="Settings"
+                app:titleTextColor="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/topCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:elevation="4dp"
+        android:visibility="visible"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbarSettings">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/user"
+                android:tint="?attr/colorControlNormal"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/userName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/font_two"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/profile_image"
+                app:layout_constraintTop_toTopOf="@+id/profile_image"
+                tools:text="John Doe" />
+
+            <TextView
+                android:id="@+id/userEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/font_two"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/userName"
+                app:layout_constraintTop_toBottomOf="@+id/userName"
+                tools:text="johndoe@mail.com" />
+
+            <TextView
+                android:id="@+id/phoneNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/font_two"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/userEmail"
+                app:layout_constraintTop_toBottomOf="@+id/userEmail"
+                tools:text="0708289107" />
+
+            <TextView
+                android:id="@+id/editTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/font_two"
+                android:text="Edit"
+                android:textColor="@color/blue"
+                android:textSize="20sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phoneNum" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!--for editing the profile-->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/editCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:elevation="4dp"
+        android:visibility="gone"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbarSettings">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/editImageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/user"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/selectProfileImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_camera"
+                app:layout_constraintBottom_toBottomOf="@+id/editImageView"
+                app:layout_constraintEnd_toEndOf="@+id/editImageView"
+                app:layout_constraintTop_toTopOf="@+id/editImageView"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <EditText
+                android:id="@+id/editUserName1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="First name"
+                android:importantForAutofill="no"
+                android:inputType="textCapWords"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editImageView" />
+
+            <EditText
+                android:id="@+id/editUserName2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="Last name"
+                android:importantForAutofill="no"
+                android:inputType="textCapWords"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editUserName1"
+                app:layout_constraintTop_toBottomOf="@+id/editUserName1" />
+
+            <EditText
+                android:id="@+id/editPhoneNum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="Phone number"
+                android:importantForAutofill="no"
+                android:inputType="phone"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editUserName2"
+                app:layout_constraintTop_toBottomOf="@+id/editUserName2" />
+
+            <TextView
+                android:id="@+id/saveTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="Save"
+                android:textColor="@color/blue"
+                android:textSize="20sp"
+                android:fontFamily="@font/font_two"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editPhoneNum" />
+
+            <TextView
+                android:id="@+id/cancelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/font_two"
+                android:text="Cancel"
+                android:textColor="@color/pink"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editPhoneNum" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.307" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/homeFragment3"
-        android:title="Home"
+        android:title="@string/home"
         android:icon="@drawable/ic_home"/>
 
     <item android:id="@+id/profileFragment3"
-        android:title="Profile"
+        android:title="@string/profile"
         android:icon="@drawable/ic_personn"/>
 
     <item android:id="@+id/locationFragment3"
-        android:title="Location"
+        android:title="@string/location"
         android:icon="@drawable/ic_location"/>
 
-    <item android:id="@+id/notificationFragment3"
-        android:title="Notification"
-        android:icon="@drawable/ic_notifications"/>
+    <item android:id="@+id/settingsFragment"
+        android:title="@string/settings"
+        android:icon="@drawable/ic_settings"/>
 </menu>

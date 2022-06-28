@@ -64,7 +64,7 @@ class LoginFragment : Fragment() {
                 binding.loginProgressBar.visibility = VISIBLE
                 binding.logInButton.isEnabled = false
 
-                if (email.isNotEmpty() && password.isNotEmpty()) {
+                if (email.isNotEmpty() && password.isNotEmpty() && email.contains("@") && email.contains(".") && password.length >= 6) {
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
                             firebaseAuth.signInWithEmailAndPassword(email, password).await()

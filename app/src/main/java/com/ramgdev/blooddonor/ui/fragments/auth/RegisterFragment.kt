@@ -15,17 +15,19 @@ import com.google.firebase.ktx.Firebase
 import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.databinding.FragmentRegisterBinding
 import com.ramgdev.blooddonor.model.Donor
+import com.ramgdev.blooddonor.util.userCollectionRef
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var firebaseAuth: FirebaseAuth
-    private val userCollectionRef = Firebase.firestore.collection("users")
+//    private val userCollectionRef = Firebase.firestore.collection("donors")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,13 +80,14 @@ class RegisterFragment : Fragment() {
                 binding.progressRegister.visibility = VISIBLE
                 binding.registerButton.isEnabled = false
 
-                if (email.isNotEmpty() && password.isNotEmpty()) {
+                if (email.isNotEmpty() && password.isNotEmpty() && email.contains("@")) {
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
                             firebaseAuth.createUserWithEmailAndPassword(email, password).await()
                             val firebaseUser = firebaseAuth.currentUser
-                            firebaseUser!!.sendEmailVerification().await()
                             saveUserDetails(donor)
+                            firebaseUser!!.sendEmailVerification().await()
+                            Timber.d("saveUserDetailsCalled")
                             withContext(Dispatchers.Main) {
                                 Toast.makeText(
                                     requireContext(),
@@ -123,9 +126,9 @@ class RegisterFragment : Fragment() {
     }
 
     //saving user details
-    private fun saveUserDetails(user: Donor) = CoroutineScope(Dispatchers.IO).launch {
+    private fun saveUserDetails(donor: Donor) = CoroutineScope(Dispatchers.IO).launch {
         try {
-            userCollectionRef.add(user).await()
+            userCollectionRef.add(donor).await()
         } catch (e: Exception) {
             withContext(Dispatchers.Main) {
                 Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()

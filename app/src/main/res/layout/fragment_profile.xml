@@ -167,11 +167,12 @@
         android:textColor="@color/blue"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textView19"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="@+id/textView19"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
-    <ImageView
-        android:id="@+id/calendarView"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/datePicker"
         android:layout_width="29dp"
         android:layout_height="33dp"
         android:layout_marginStart="8dp"
@@ -179,18 +180,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView21"
         app:layout_constraintStart_toEndOf="@+id/textView21"
         app:layout_constraintTop_toTopOf="@+id/textView21" />
-
-    <!--<CalendarView
-        android:id="@+id/calendar"
-        android:layout_width="240dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:background="@drawable/calendar_bg"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/calendarView"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />-->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
@@ -204,5 +193,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Donation date"
+        android:fontFamily="@font/font_two"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textView21"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/font_two"
+        android:text="23/07/2022"
+        android:textColor="@color/pink"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="@+id/textView9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
