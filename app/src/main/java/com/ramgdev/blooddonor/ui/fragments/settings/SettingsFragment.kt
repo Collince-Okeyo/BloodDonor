@@ -22,6 +22,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.ramgdev.blooddonor.databinding.FragmentSettingsBinding
 import com.ramgdev.blooddonor.model.Donor
+import com.ramgdev.blooddonor.util.storageReference
 import com.ramgdev.blooddonor.util.userCollectionRef
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +36,6 @@ class SettingsFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var firebaseDatabase: DatabaseReference
-    private var storageReference = Firebase.storage.reference
     private lateinit var userId: String
     private lateinit var user: FirebaseUser
     private var image: Uri? = null
@@ -166,7 +166,7 @@ class SettingsFragment : Fragment() {
             }
         }
     }
-    /*override fun onMenuItemClick(item: MenuItem?): Boolean {
+   /* override fun onMenuItemClick(item: MenuItem?): Boolean {
         return if (item?.itemId === R.id.action_mode_menu) {
             val sharedPreferences = requireActivity().getSharedPreferences("ui_mode", Context.MODE_PRIVATE)
             val itemUIMode = sharedPreferences.getBoolean("ISCHECKED", false)

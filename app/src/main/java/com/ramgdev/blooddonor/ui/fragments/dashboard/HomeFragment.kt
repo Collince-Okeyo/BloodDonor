@@ -1,5 +1,6 @@
 package com.ramgdev.blooddonor.ui.fragments.dashboard
 
+import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.*
@@ -12,6 +13,8 @@ import com.google.firebase.storage.ktx.storage
 import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.databinding.FragmentHomeBinding
 import com.ramgdev.blooddonor.model.Donor
+import com.ramgdev.blooddonor.util.firebaseAuth
+import com.ramgdev.blooddonor.util.storageReference
 import com.ramgdev.blooddonor.util.userCollectionRef
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +26,6 @@ import timber.log.Timber
 class HomeFragment : Fragment()  {
 
     private lateinit var binding: FragmentHomeBinding
-    private var storageReference = Firebase.storage.reference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,12 +38,15 @@ class HomeFragment : Fragment()  {
             findNavController().navigate(R.id.action_homeFragment3_to_settingsFragment)
         }
 
-        val donor = Donor(null, null, null, null, null)
-        loadProfile("myImage")
-        setHasOptionsMenu(true)
+        binding.findFacilityImageView.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment3_to_locationFragment3)
+        }
+
+        loadProfile("myProfile")
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     private fun loadProfile(fileName: String) = CoroutineScope(Dispatchers.IO).launch {
         try {
 
@@ -58,10 +63,10 @@ class HomeFragment : Fragment()  {
                 donor = document.toObject<Donor>()
             }
             name.append(donor?.firstName)
-
+//            Timber.d("Name: $myName")
             withContext(Dispatchers.Main) {
                 binding.profileImage.setImageBitmap(bmp)
-                binding.profileName.text = name.toString()
+                binding.profileName.text = "Hi ${name.toString()}"
             }
 
         } catch (e: Exception) {
@@ -76,5 +81,27 @@ class HomeFragment : Fragment()  {
         inflater.inflate(R.menu.options_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
         Timber.d("Method Called")
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.logout -> {
+                firebaseAuth.signOut()
+                findNavController().navigate(R.id.action_homeFragment3_to_loginFragment2)
+            }
+            R.id.help -> {
+                findNavController().navigate(R.id.action_homeFragment3_to_helpFragment)
+            }
+            R.id.about -> {
+                findNavController().navigate(R.id.action_homeFragment3_to_aboutFragment)
+            }
+            R.id.settings -> {
+                findNavController().navigate(R.id.action_homeFragment3_to_settingsFragment)
+            }
+            R.id.notification -> {
+                findNavController().navigate(R.id.action_homeFragment3_to_notificationFragment3)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

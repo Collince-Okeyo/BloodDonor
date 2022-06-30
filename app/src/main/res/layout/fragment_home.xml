@@ -51,7 +51,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/font_two"
-                        android:text="John Doe"
+                        android:text=" Hi John"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/profileImage"
@@ -106,13 +106,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardView"
+        android:id="@+id/bloodRequestCardView"
         android:layout_width="120dp"
         android:layout_height="100dp"
         android:layout_marginTop="4dp"
         android:backgroundTint="@color/light_pink"
         app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView2"
+        app:layout_constraintEnd_toStartOf="@+id/saveLivesCardView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6">
@@ -149,7 +149,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardView2"
+        android:id="@+id/saveLivesCardView"
         android:layout_width="120dp"
         android:layout_height="100dp"
         android:layout_marginTop="4dp"
@@ -157,7 +157,7 @@
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toEndOf="@+id/bloodRequestCardView"
         app:layout_constraintTop_toBottomOf="@+id/textView7" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -197,10 +197,10 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/bloodRequestCardView" />
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/findFacilityImageView"
         android:layout_width="200dp"
         android:layout_height="180dp"
         android:layout_marginStart="32dp"
@@ -210,7 +210,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <ImageView
-        android:id="@+id/imageView15"
+        android:id="@+id/donationRequetImageView"
         android:layout_width="200dp"
         android:layout_height="180dp"
         android:layout_marginTop="8dp"
@@ -220,13 +220,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <ImageView
-        android:id="@+id/imageView16"
+        android:id="@+id/bloodBankImageView"
         android:layout_width="200dp"
         android:layout_height="180dp"
         android:layout_marginStart="32dp"
         android:src="@drawable/blood_bank"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+        app:layout_constraintTop_toBottomOf="@+id/findFacilityImageView" />
 
     <ImageView
         android:id="@+id/imageViewSettings"
@@ -235,6 +235,6 @@
         android:layout_marginEnd="32dp"
         android:src="@drawable/other_settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+        app:layout_constraintTop_toBottomOf="@+id/donationRequetImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

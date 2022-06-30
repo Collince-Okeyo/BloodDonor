@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/item1"
+        android:id="@+id/help"
         android:title="@string/help"/>
 
     <item
-        android:id="@+id/item2"
+        android:id="@+id/settings"
         android:title="@string/settings"/>
 
     <item
-        android:id="@+id/item3"
+        android:id="@+id/about"
         android:title="@string/about"/>
 
     <item
-        android:id="@+id/item4"
+        android:id="@+id/logout"
         android:title="@string/log_out"/>
 
     <item
-        android:id="@+id/item5"
+        android:id="@+id/notification"
         android:title="@string/notification"
         android:icon="@drawable/ic_notifications"
         app:showAsAction="ifRoom"/>

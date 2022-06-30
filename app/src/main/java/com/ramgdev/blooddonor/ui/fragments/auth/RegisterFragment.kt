@@ -15,6 +15,7 @@ import com.google.firebase.ktx.Firebase
 import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.databinding.FragmentRegisterBinding
 import com.ramgdev.blooddonor.model.Donor
+import com.ramgdev.blooddonor.util.firebaseAuth
 import com.ramgdev.blooddonor.util.userCollectionRef
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +27,7 @@ import timber.log.Timber
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
-    private lateinit var firebaseAuth: FirebaseAuth
+
 //    private val userCollectionRef = Firebase.firestore.collection("donors")
 
     override fun onCreateView(
@@ -35,7 +36,6 @@ class RegisterFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        firebaseAuth = FirebaseAuth.getInstance()
 
         binding.registerButton.setOnClickListener {
             registerWithEmailAndPassword()
@@ -44,6 +44,8 @@ class RegisterFragment : Fragment() {
         binding.lackAccountTV.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment3_to_loginFragment)
         }
+
+        binding.powerSpinnerView.showOrDismiss()
 
         return binding.root
     }

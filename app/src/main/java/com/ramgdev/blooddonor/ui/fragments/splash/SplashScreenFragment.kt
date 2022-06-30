@@ -13,21 +13,17 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.ui.activity.DashBoardActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import timber.log.Timber
+import com.ramgdev.blooddonor.util.firebaseAuth
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenFragment : Fragment() {
 
-    private lateinit var firebaseAuth: FirebaseAuth
+    private val user = firebaseAuth.currentUser
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        firebaseAuth = FirebaseAuth.getInstance()
-        val user = firebaseAuth.currentUser
 
         Handler().postDelayed({
             if (user != null && onBoardingFinished()){

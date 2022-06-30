@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.databinding.FragmentLoginBinding
 import com.ramgdev.blooddonor.ui.activity.DashBoardActivity
+import com.ramgdev.blooddonor.util.firebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,7 +24,6 @@ import kotlinx.coroutines.withContext
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
