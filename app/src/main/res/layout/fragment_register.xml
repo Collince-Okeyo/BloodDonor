@@ -10,7 +10,7 @@
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/ic_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -163,32 +163,31 @@
         android:id="@+id/lackAccountTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/font_five"
         android:text="Already have an account? Login"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/registerButton"
+        app:layout_constraintStart_toStartOf="@+id/registerButton"
         app:layout_constraintTop_toBottomOf="@+id/registerButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registerButton"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/blue"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/pink"
         android:fontFamily="@font/font_four"
         android:text="Sign Up"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneET" />
+        app:layout_constraintTop_toBottomOf="@+id/powerSpinnerView2" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/phoneET"
@@ -221,6 +220,32 @@
             android:textColor="@color/black"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.skydoves.powerspinner.PowerSpinnerView
+        android:id="@+id/powerSpinnerView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner_bg"
+        android:gravity="center"
+        android:hint="Select Your Blood Group"
+        android:padding="10dp"
+        android:textColor="@color/pink"
+        android:textColorHint="@color/pink"
+        android:textSize="14.5sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneET"
+        app:spinner_arrow_gravity="end"
+        app:spinner_arrow_padding="8dp"
+        app:spinner_divider_color="@color/light_pink"
+        app:spinner_divider_show="true"
+        app:spinner_divider_size="0.4dp"
+        app:spinner_item_array="@array/blood_types"
+        app:spinner_item_height="46dp"
+        app:spinner_popup_animation="bounce"
+        app:spinner_popup_background="@color/white"
+        app:spinner_popup_elevation="14dp" />
 
     <ProgressBar
         android:id="@+id/progressRegister"

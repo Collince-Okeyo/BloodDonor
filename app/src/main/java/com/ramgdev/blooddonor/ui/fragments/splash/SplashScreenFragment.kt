@@ -1,6 +1,5 @@
 package com.ramgdev.blooddonor.ui.fragments.splash
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -13,12 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.ui.activity.DashBoardActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import timber.log.Timber
 
-@SuppressLint("CustomSplashScreen")
 class SplashScreenFragment : Fragment() {
 
     private lateinit var firebaseAuth: FirebaseAuth

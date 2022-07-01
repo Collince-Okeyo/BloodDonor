@@ -6,6 +6,7 @@ data class Donor(
     val lastName: String? = "",
     val email: String? = "",
     val phoneNumber: String? = "",
-    val passwd: String? = ""
+    val passwd: String? = "",
+//    val bloodGroup: String? = "",
 
 )

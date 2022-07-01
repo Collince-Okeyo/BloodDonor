@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/drawable/ic_screen2.xml" value="0.1425" />
         <entry key="app/src/main/res/drawable/map_bg.xml" value="0.1455" />
         <entry key="app/src/main/res/drawable/search_view_bg.xml" value="0.1455" />
+        <entry key="app/src/main/res/drawable/spinner_bg.xml" value="0.1215" />
         <entry key="app/src/main/res/font/font.xml" value="0.22395833333333334" />
         <entry key="app/src/main/res/layout-v21/fragment_location.xml" value="0.19375" />
         <entry key="app/src/main/res/layout-v21/fragment_login.xml" value="0.19375" />
@@ -24,7 +25,7 @@
         <entry key="app/src/main/res/layout/fragment_location.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.19375" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.18055555555555555" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_s_creen_three.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment_screen_one.xml" value="0.19076923076923077" />
