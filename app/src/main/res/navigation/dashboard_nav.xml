@@ -23,9 +23,6 @@
             android:id="@+id/action_homeFragment3_to_profileFragment3"
             app:destination="@id/profileFragment3" />
         <action
-            android:id="@+id/action_homeFragment3_to_datePickerFragment"
-            app:destination="@id/datePickerFragment" />
-        <action
             android:id="@+id/action_homeFragment3_to_loginFragment2"
             app:destination="@id/loginFragment2" />
         <action
@@ -50,15 +47,8 @@
         android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment3_to_datePickerFragment"
-            app:destination="@id/datePickerFragment" />
     </fragment>
-    <dialog
-        android:id="@+id/datePickerFragment"
-        android:name="com.ramgdev.blooddonor.DatePickerFragment"
-        android:label="fragment_date_picker"
-        tools:layout="@layout/fragment_date_picker" />
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.ramgdev.blooddonor.ui.fragments.settings.SettingsFragment"
