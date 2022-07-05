@@ -6,20 +6,31 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.firebase.firestore.ktx.toObject
 import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.databinding.FragmentProfileBinding
+import com.ramgdev.blooddonor.model.Donor
 import com.ramgdev.blooddonor.util.ToEditable
+import com.ramgdev.blooddonor.util.storageReference
+import com.ramgdev.blooddonor.util.userCollectionRef
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -31,10 +42,11 @@ class ProfileFragment : Fragment(), OnMapReadyCallback, ToEditable {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
+        loadProfile("myProfile")
         binding.mapView.getMapAsync { map ->
             this.map = map
         }
@@ -44,6 +56,12 @@ class ProfileFragment : Fragment(), OnMapReadyCallback, ToEditable {
             bookDonationDate()
         }
 
+        binding.button.setOnClickListener {
+            val date = binding.date.text.toString()
+            val time = binding.time.text.toString()
+            val donor = Donor(date, time)
+            donationSchedule(donor)
+        }
         return binding.root
     }
 
@@ -53,7 +71,7 @@ class ProfileFragment : Fragment(), OnMapReadyCallback, ToEditable {
         // Get Current Time
         val timePickerDialog = TimePickerDialog(
             requireContext(),
-            TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+            { _, hour, minute ->
                 calendar.set(Calendar.HOUR_OF_DAY, hour)
                 calendar.set(Calendar.MINUTE, minute)
                 val myFormat = "HH:mm"
@@ -78,10 +96,10 @@ class ProfileFragment : Fragment(), OnMapReadyCallback, ToEditable {
         // Get current date
         val datePickerDialog = DatePickerDialog(
             requireContext(),
-            DatePickerDialog.OnDateSetListener { _, year, month, dayOfmonth ->
+            { _, year, month, dayOfMonth ->
                 calendar.set(Calendar.YEAR, year)
                 calendar.set(Calendar.MONTH, month)
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfmonth)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 val format = "MMM dd, yyyy"
                 val sdf = SimpleDateFormat(format, Locale.US)
                 binding.date.text = sdf.format(calendar.time).toEditable()
@@ -94,6 +112,53 @@ class ProfileFragment : Fragment(), OnMapReadyCallback, ToEditable {
         datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK)
         datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK)
         datePickerDialog.datePicker.minDate = System.currentTimeMillis()
+
+    }
+
+    // date and time
+    private fun donationSchedule(donor: Donor) = CoroutineScope(Dispatchers.IO).launch {
+        userCollectionRef.add(donor).await()
+        withContext(Dispatchers.Main) {
+            binding.date.text = ""
+            binding.time.text = ""
+        }
+    }
+
+
+    // Use profile
+    @SuppressLint("SetTextI18n")
+    private fun loadProfile(fileName: String) = CoroutineScope(Dispatchers.IO).launch {
+        try {
+
+            // Update the profile image
+            val maxDownloadSize = 5L * 1024 * 1024
+            val bytes = storageReference.child("images/$fileName").getBytes(maxDownloadSize).await()
+            val bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+
+            // Retrieve the user's details
+            val querySnapshot = userCollectionRef.get().await()
+            var donor: Donor? = null
+            val name = StringBuilder()
+            val phone = StringBuilder()
+            val bloodG = StringBuilder()
+            for (document in querySnapshot.documents) {
+                donor = document.toObject<Donor>()
+            }
+            name.append(donor?.firstName+ "   "+ donor?.lastName)
+            phone.append(donor?.phoneNumber)
+            bloodG.append(donor?.bloodGroup)
+            withContext(Dispatchers.Main) {
+                binding.userProfileImage.setImageBitmap(bmp)
+                binding.donorName.text = name.toString()
+                binding.donorContact.text = phone.toString()
+                binding.bloodType.text = bloodG.toString()
+            }
+
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     }
 

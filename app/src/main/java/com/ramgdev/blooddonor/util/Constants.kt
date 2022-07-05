@@ -10,12 +10,5 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 val userCollectionRef = Firebase.firestore.collection("donors")
-private var storageReference = Firebase.storage.reference
+var storageReference = Firebase.storage.reference
 
-private fun saveUserDetails(donor: Donor) = CoroutineScope(Dispatchers.IO).launch {
-    try {
-        userCollectionRef.add(donor).await()
-    } catch (e: Exception) {
-        e.message
-    }
-}

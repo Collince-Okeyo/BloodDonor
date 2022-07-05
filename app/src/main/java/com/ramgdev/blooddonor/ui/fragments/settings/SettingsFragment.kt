@@ -34,10 +34,8 @@ import kotlinx.coroutines.withContext
 class SettingsFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
-    private lateinit var firebaseDatabase: DatabaseReference
     private var storageReference = Firebase.storage.reference
-    private lateinit var userId: String
-    private lateinit var user: FirebaseUser
+    private lateinit var auth: FirebaseAuth
     private var image: Uri? = null
 
     override fun onCreateView(
@@ -46,10 +44,8 @@ class SettingsFragment : Fragment() {
     ): View? {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
+        auth = FirebaseAuth.getInstance()
         updateProfile("myProfile")
-        firebaseDatabase = FirebaseDatabase.getInstance().getReference("users")
-        user = FirebaseAuth.getInstance().currentUser!!
-        userId = user.uid
 
         binding.editTextView.setOnClickListener {
             binding.topCardView.visibility = INVISIBLE
@@ -63,7 +59,7 @@ class SettingsFragment : Fragment() {
             val lName = binding.editUserName2.text.toString()
             val phone = binding.editPhoneNum.text.toString()
             val email = binding.userEmail.text.toString()
-            val donor = Donor(fName, lName, email, phone, "")
+            val donor = Donor(fName, lName, email, phone)
 
             editDonorDetails(donor)
             editDonorProfile("myProfile")
@@ -154,6 +150,7 @@ class SettingsFragment : Fragment() {
                 withContext(Dispatchers.Main) {
                     binding.progressBar.visibility = VISIBLE
                 }
+                val uId = auth.uid
                 storageReference.child("images/$fileName").putFile(it).await()
                 withContext(Dispatchers.Main) {
                     binding.progressBar.visibility = INVISIBLE

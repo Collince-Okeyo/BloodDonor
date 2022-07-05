@@ -1,6 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">BloodDonor</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="help">Help</string>
     <string name="settings">Settings</string>
@@ -23,14 +22,14 @@
     <string name="settings_fragment">Settings</string>
 
     <string-array name="blood_types">
-        <item>A RhD positive (A+)</item>
-        <item>A RhD negative (A-)</item>
-        <item>B RhD positive (B+)</item>
-        <item>B RhD negative (B-)</item>
-        <item>O RhD positive (O+)</item>
-        <item>O RhD negative (O-)</item>
-        <item>AB RhD positive (AB+)</item>
-        <item>AB RhD negative (AB-)</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>O+</item>
+        <item>O-</item>
+        <item>AB+</item>
+        <item>AB-</item>
     </string-array>
 
 </resources>

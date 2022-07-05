@@ -13,6 +13,24 @@
         <action
             android:id="@+id/action_homeFragment3_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment3_to_notificationFragment3"
+            app:destination="@id/notificationFragment3" />
+        <action
+            android:id="@+id/action_homeFragment3_to_profileFragment3"
+            app:destination="@id/profileFragment3" />
+        <action
+            android:id="@+id/action_homeFragment3_to_locationFragment3"
+            app:destination="@id/locationFragment3" />
+        <action
+            android:id="@+id/action_homeFragment3_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_homeFragment3_to_helpFragment"
+            app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/action_homeFragment3_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
     </fragment>
     <fragment
         android:id="@+id/locationFragment3"
@@ -28,19 +46,25 @@
         android:id="@+id/profileFragment3"
         android:name="com.ramgdev.blooddonor.ui.fragments.dashboard.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment3_to_datePickerFragment"
-            app:destination="@id/datePickerFragment" />
-    </fragment>
-    <dialog
-        android:id="@+id/datePickerFragment"
-        android:name="com.ramgdev.blooddonor.DatePickerFragment"
-        android:label="fragment_date_picker"
-        tools:layout="@layout/fragment_date_picker" />
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.ramgdev.blooddonor.ui.fragments.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.ramgdev.blooddonor.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.ramgdev.blooddonor.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.ramgdev.blooddonor.ui.fragments.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 </navigation>
