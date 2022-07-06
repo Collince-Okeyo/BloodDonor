@@ -45,8 +45,6 @@ class RegisterFragment : Fragment() {
             findNavController().navigate(R.id.action_registerFragment3_to_loginFragment)
         }
 
-        binding.powerSpinnerView.showOrDismiss()
-
         return binding.root
     }
 
