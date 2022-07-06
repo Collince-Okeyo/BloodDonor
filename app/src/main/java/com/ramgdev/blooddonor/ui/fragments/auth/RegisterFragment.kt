@@ -6,12 +6,10 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.databinding.FragmentRegisterBinding
 import com.ramgdev.blooddonor.model.Donor
@@ -45,6 +43,31 @@ class RegisterFragment : Fragment() {
             findNavController().navigate(R.id.action_registerFragment3_to_loginFragment)
         }
 
+        val spinner = binding.spinnerBloodType
+        val adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.blood_types,
+            android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        spinner.onItemSelectedListener = object :
+            android.widget.AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: android.widget.AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                Timber.d("Selected item is $selectedItem")
+            }
+
+            override fun onNothingSelected(parent: android.widget.AdapterView<*>) {
+                Toast.makeText(requireContext(), "Please Select Blood Group", Toast.LENGTH_SHORT).show()
+            }
+        }
         return binding.root
     }
 
@@ -54,7 +77,8 @@ class RegisterFragment : Fragment() {
         val firstName = binding.firstNameET.editText?.text.toString().trim()
         val lastName = binding.lastNameET.editText?.text.toString().trim()
         val phoneNumber = binding.phoneET.editText?.text.toString().trim()
-        val donor = Donor(firstName, lastName, email, phoneNumber, password)
+        val bloodGroup = binding.spinnerBloodType.selectedItem.toString()
+        val donor = Donor(firstName, lastName, email, phoneNumber, password, bloodGroup)
 
 
         when {

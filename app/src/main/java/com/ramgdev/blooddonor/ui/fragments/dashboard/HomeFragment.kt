@@ -8,8 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 import com.ramgdev.blooddonor.R
 import com.ramgdev.blooddonor.databinding.FragmentHomeBinding
 import com.ramgdev.blooddonor.model.Donor
@@ -23,7 +21,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class HomeFragment : Fragment()  {
+class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
@@ -34,6 +32,7 @@ class HomeFragment : Fragment()  {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        setHasOptionsMenu(true)
         binding.imageViewSettings.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment3_to_settingsFragment)
         }
@@ -77,31 +76,44 @@ class HomeFragment : Fragment()  {
 
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.options_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
-        Timber.d("Method Called")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.logout -> {
                 firebaseAuth.signOut()
                 findNavController().navigate(R.id.action_homeFragment3_to_loginFragment2)
+                Timber.d("Logout")
+                true
             }
-            R.id.help -> {
+            R.id.helpFragment -> {
                 findNavController().navigate(R.id.action_homeFragment3_to_helpFragment)
+                Timber.d("Help")
+                true
             }
             R.id.about -> {
                 findNavController().navigate(R.id.action_homeFragment3_to_aboutFragment)
-            }
-            R.id.settings -> {
-                findNavController().navigate(R.id.action_homeFragment3_to_settingsFragment)
+                true
             }
             R.id.notification -> {
                 findNavController().navigate(R.id.action_homeFragment3_to_notificationFragment3)
+                true
             }
+            R.id.settings -> {
+                findNavController().navigate(R.id.action_homeFragment3_to_settingsFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
+
+
 }
