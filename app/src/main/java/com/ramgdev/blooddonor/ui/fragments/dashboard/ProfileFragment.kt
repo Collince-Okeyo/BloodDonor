@@ -17,8 +17,13 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.ramgdev.blooddonor.databinding.FragmentProfileBinding
+import com.ramgdev.blooddonor.model.Appointment
 import com.ramgdev.blooddonor.model.Donor
 import com.ramgdev.blooddonor.util.ToEditable
 import com.ramgdev.blooddonor.util.storageReference
@@ -37,12 +42,20 @@ class ProfileFragment : Fragment(), OnMapReadyCallback, ToEditable {
     private lateinit var map: GoogleMap
     var calendar: Calendar = Calendar.getInstance()
 
+    private lateinit var database: DatabaseReference
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        database = FirebaseDatabase.getInstance().reference
+        val firebaseMessaging = FirebaseMessaging.getInstance()
+
+//        firebaseMessaging.subscribeToTopic("new_appointment")
 
         loadProfile("myProfile")
         binding.mapView.getMapAsync { map ->
@@ -52,6 +65,26 @@ class ProfileFragment : Fragment(), OnMapReadyCallback, ToEditable {
 
         binding.datePicker.setOnClickListener {
             bookAppointment()
+        }
+
+        binding.button.setOnClickListener {
+            val date = binding.bookedDate.text.toString()
+            val time = binding.bookedTime.text.toString()
+
+            if (date.isEmpty() || time.isEmpty()) {
+                Toast.makeText(requireContext(), "Please Select Date", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val userDataMap = HashMap<String, String>()
+            userDataMap["name"] = date
+            userDataMap["amount"] = time
+
+            FirebaseDatabase.getInstance().getReference("appointment").push().setValue(userDataMap)
+            binding.bookedDate.text = ""
+            binding.bookedTime.text = ""
+
+            Toast.makeText(requireContext(), "Appointment booked successfully", Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
@@ -188,7 +221,6 @@ class ProfileFragment : Fragment(), OnMapReadyCallback, ToEditable {
 
     }
 
-    override fun show(applicationContext: Context, tag: String) {
-        TODO("Not yet implemented")
-    }
+    override fun show(applicationContext: Context, tag: String) {}
+
 }

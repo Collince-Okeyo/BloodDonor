@@ -97,8 +97,11 @@ dependencies {
     // Feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
-    // PowerSpinner
-    implementation "com.github.skydoves:powerspinner:1.2.3"
+    // Firebase functions
+    implementation 'com.google.firebase:firebase-functions:20.1.0'
+
+    // Firebase messaging
+    implementation 'com.google.firebase:firebase-messaging:23.0.6'
 
     // EasyPermissions
     implementation 'com.vmadalin:easypermissions-ktx:1.0.0'
